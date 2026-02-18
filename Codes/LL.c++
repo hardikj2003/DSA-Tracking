@@ -1,8 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class Node
-{
+class Node{
 public:
     int data;
     Node *next;
@@ -24,15 +23,13 @@ public:
     }
 };
 
-void insertAtHead(Node *&head, int data)
-{
+void insertAtHead(Node *&head, int data){
     Node *temp = new Node(data);
     temp->next = head;
     head = temp;
 }
 
-void insertAtTail(Node *&head, int data)
-{
+void insertAtTail(Node *&head, int data){
     Node *newNode = new Node(data);
 
     Node *temp = head;
@@ -43,8 +40,7 @@ void insertAtTail(Node *&head, int data)
     temp->next = newNode;
 }
 
-void insertAtMiddle(Node *&head, int d, int pos)
-{
+void insertAtMiddle(Node *&head, int d, int pos){
     Node *newNode = new Node(d);
     if (pos == 1)
     {
@@ -62,8 +58,7 @@ void insertAtMiddle(Node *&head, int d, int pos)
     temp->next = newNode;
 }
 
-void deleteNode(Node *&head, int pos)
-{
+void deleteNode(Node *&head, int pos){
 
     if (pos == 1)
     {
@@ -89,8 +84,7 @@ void deleteNode(Node *&head, int pos)
     }
 }
 
-void InsertAfterEveryX(Node *&head, int x, int y)
-{
+void InsertAfterEveryX(Node *&head, int x, int y){
     Node *temp = head;
     while (temp->next != NULL)
     {
