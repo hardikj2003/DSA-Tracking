@@ -68,10 +68,7 @@ class Queue{
         }
         cout << endl;
     }
-
 };
-
-
 int main(){
     Queue q;
     q.enqueue(3);
