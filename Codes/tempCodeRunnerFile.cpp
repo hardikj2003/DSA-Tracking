@@ -1,1 +1,2 @@
-cout<<"MinIndex: "<<minIndex<<" "<<endl;
+
+    // cout<<factorial(n)<<endl;

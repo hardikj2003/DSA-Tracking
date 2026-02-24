@@ -16,9 +16,17 @@ int factorial(int n){
     return n * factorial(n-1);
 }
 
+int fibonacci(int n){
+    if(n==0 || n==1){
+        return n;
+    }
+    int sum = fibonacci(n-1) + fibonacci(n-2);
+    return sum;
+}
+
 int main(){
     int n;
     cin>>n;
-    printNumbersTillN(n);
-    cout<<factorial(n)<<endl;
+    cout<<fibonacci(n)<<endl;
+
 }
