@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 void printNumbersTillN(int n){
@@ -24,9 +25,30 @@ int fibonacci(int n){
     return sum;
 }
 
+int sumOfNum(int n){
+    if(n==0){
+        return 0;
+    }
+    int digit = n%10;
+    int sum = sumOfNum(n/10) + digit;
+    return sum;
+}
+
+bool isPalindrome(string s, int i, int j){
+    if(i>=j){
+        return true;
+    }
+
+    if(s[i] == s[j]){
+        return true;
+        isPalindrome(s, i++, j--);
+    }
+    return false;
+}
+
 int main(){
-    int n;
-    cin>>n;
-    cout<<fibonacci(n)<<endl;
+    string s;
+    cin>>s;
+    cout<<isPalindrome(s, 0, s.length()-1);
 
 }
