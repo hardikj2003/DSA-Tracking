@@ -74,9 +74,11 @@ int sumOfArray(int* arr, int n){
         return 0;
     }
     if(n==1){
-        return n;
+        return arr[0];
     }
+    int ans = sumOfArray(arr+1, n-1) +arr[0];
 
+    return ans;
 }
 
 int reverseNumber(int n){
