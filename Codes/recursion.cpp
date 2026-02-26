@@ -101,10 +101,31 @@ int reverseNumber(int n){
     return rev;
 }
 
+void reverseArray(int* arr, int i, int j, int n){
+    if(i>j){
+        return;
+    }
+
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+    reverseArray(arr, i+1, j-1, n);
+}
+
 int main(){
     int n;
     cin>>n;
 
-    printNumbersTillN2(1, 10);
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+
+    reverseArray(arr, 0, n-1, n);
+
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
 
 }
