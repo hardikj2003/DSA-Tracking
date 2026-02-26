@@ -9,6 +9,16 @@ void printNumbersTillN(int n){
     printNumbersTillN(n-1);
     cout<<n<<" ";
 }
+
+void printNumbersTillN2(int i, int n){
+    if(i>n){
+        return;
+    }
+
+    cout<<i;
+    printNumbersTillN2(i+1, n);
+}
+
 int factorial(int n){
     if(n==1){
         return 1;
@@ -94,12 +104,7 @@ int reverseNumber(int n){
 int main(){
     int n;
     cin>>n;
-    int arr[n];
-    for(int i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    int ans = sumOfArray(arr, n);
 
-    cout<<ans<<endl;
+    printNumbersTillN2(1, 10);
 
 }
