@@ -2,14 +2,6 @@
 #include <string>
 using namespace std;
 
-void printNumbersTillN(int n){
-    if(n==0){
-        return;
-    }
-    printNumbersTillN(n-1);
-    cout<<n<<" ";
-}
-
 void printNumbersTillN2(int i, int n){
     if(i>n){
         return;
@@ -18,6 +10,15 @@ void printNumbersTillN2(int i, int n){
     cout<<i;
     printNumbersTillN2(i+1, n);
 }
+
+void printNumbersTillN(int n){
+    if(n==0){
+        return;
+    }
+    printNumbersTillN(n-1);
+    cout<<n<<" ";
+}
+
 
 int factorial(int n){
     if(n==1){
@@ -44,17 +45,6 @@ int sumOfNum(int n){
     return sum;
 }
 
-bool isPalindrome(string s, int i, int j){
-    if(i>=j){
-        return true;
-    }
-
-    if(s[i] == s[j]){
-        return true;
-        isPalindrome(s, i++, j--);
-    }
-    return false;
-}
 
 int countDigits(int n){
     if(n==0){
@@ -66,6 +56,17 @@ int countDigits(int n){
 
 }
 
+bool isPalindrome(string s, int i, int j){
+    if(i>=j){
+        return true;
+    }
+
+    if(s[i] == s[j]){
+        return true;
+        isPalindrome(s, i++, j--);
+    }
+    return false;
+}
 bool isSorted(int* arr, int n){
     if(n==0 || n==1){
         return true;
@@ -91,15 +92,6 @@ int sumOfArray(int* arr, int n){
     return ans;
 }
 
-int reverseNumber(int n){
-    if(n==0){
-        return 0;
-    }
-    int dig = n%10;
-    int rev = reverseNumber(n/10) + (dig*10);
-
-    return rev;
-}
 
 void reverseArray(int* arr, int i, int j, int n){
     if(i>j){
@@ -110,6 +102,15 @@ void reverseArray(int* arr, int i, int j, int n){
     arr[i] = arr[j];
     arr[j] = temp;
     reverseArray(arr, i+1, j-1, n);
+}
+int reverseNumber(int n){
+    if(n==0){
+        return 0;
+    }
+    int dig = n%10;
+    int rev = reverseNumber(n/10) + (dig*10);
+
+    return rev;
 }
 
 int main(){
