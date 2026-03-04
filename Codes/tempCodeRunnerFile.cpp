@@ -1,2 +1,1 @@
 
-    // cout<<factorial(n)<<endl;
