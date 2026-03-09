@@ -1,81 +1,78 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void merge(int* arr, int s, int e){
-    int mid = s + (e-s)/2;
+class Node {
+    public: 
+    int data;
+    Node* next;
 
-    int len1 = mid - s +1;
-    int len2 = e-mid;
+    Node(int d){
+        this->data = d;
+        this->next = NULL;
+    }
+};
 
-    int* first = new int[len1];
-    int* second = new int[len2];
+class Queue{
+    public:
+    Node* front;
+    Node* rear;
 
-    int k=s;
-
-    for(int i=0;i<len1; i++){
-        first[i] = arr[k++];
+    Queue(){
+        front = NULL;
+        rear = NULL;
     }
 
-    k = mid+1;
-    for(int i=0;i<len2; i++){
-        second[i] = arr[k++];
+    void enqueue(int d){
+        Node* newNode = new Node(d);
+        if(rear == NULL){
+            front = rear = newNode;
+            return;
+        }
+
+        rear->next = newNode;
+        rear = newNode;
     }
 
-    int index1 = 0;
-    int index2 = 0;
+    void dequeue(){
+        if(front == NULL){
+            cout << "Queue Underflow\n";
+            rear = NULL;
+            return;
+        }
+        Node* temp = front;
+        front = front->next;
 
-    k=s;
+        delete temp;
+    }
 
-    while(index1 < len1 && index2 < len2){
-        if(first[index1] < second[index2]){
-            arr[k++] = first[index1++];
-        }else{
-            arr[k++] = second[index2++];
+    int peek(){
+        if (front == NULL) {
+            cout << "Queue is empty\n";
+            return -1;
+        }
+        return front->data;
+    }
+
+    void display(){
+        Node* temp = front;
+        while(temp!=NULL){
+            cout<<temp->data<<" ";
+            temp = temp->next;
         }
     }
+};
 
-     while(index1 < len1){
-        arr[k++] = first[index1++]; 
-    }
-
-    while(index2 < len2){
-        arr[k++] = second[index2++]; 
-    }
-
-    delete []first;
-    delete []second;
-
-}
-
-
-void mergeSort(int* arr, int s, int e){
-    if(s>=e){
-        return;
-    }
-
-    int mid = s + (e-s)/2;
-
-    mergeSort(arr,s, mid);
-    mergeSort(arr,mid+1, e);
-
-    merge(arr, s, e);
-}
 
 int main() {
-    int n;
-    cin>>n;
+    Queue q;
+    q.enqueue(8);
+    q.enqueue(7);
+    q.enqueue(6);
+    q.enqueue(5);
+    q.enqueue(4);
+    q.dequeue();
+    q.dequeue();
+    q.display();
 
-    int arr[n];
-    for(int i=0;i<n;i++){
-        cin>>arr[i]; 
-    }
-
-    mergeSort(arr, 0, n-1);
-
-    for(int i=0;i<n;i++){
-        cout<<arr[i]<<" ";
-    }
-
-    cout<<endl;
     return 0;
 }
