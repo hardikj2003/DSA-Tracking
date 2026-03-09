@@ -1,44 +1,63 @@
-
 #include <bits/stdc++.h>
 using namespace std;
 
-int partition(vector<int> &vec, int low, int high) {
+int partition(int* arr, int s, int e){
+    int pivot = arr[s];
 
-    int pivot = vec[high];
-
-    int i = (low - 1);
-
-    for (int j = low; j <= high - 1; j++) {
-
-        if (vec[j] <= pivot) {
-            i++;
-            swap(vec[i], vec[j]);
+    int cnt = 0;
+    for(int i=s+1; i<=e; i++){
+        if(arr[i] < pivot){
+            cnt++;
         }
     }
-    swap(vec[i + 1], vec[high]);
 
-    return (i + 1);
+    int pivotIndex = s + cnt;
+    swap(arr[s] , arr[pivotIndex] );
+    
+    int i=s, j=e;
+    while(i<pivotIndex && j>pivotIndex){
+        while(arr[i] <= pivot){
+            i++;
+        }
+        while(arr[j] > pivot){
+            j--;
+        }
+
+        if(i<pivotIndex && j>pivotIndex){
+            swap(arr[i++], arr[j--]);
+        }
+    }
+
+    return pivotIndex;
 }
 
-void quickSort(vector<int> &vec, int low, int high) {
-
-    if (low < high) {
-
-        int pi = partition(vec, low, high);
-
-        quickSort(vec, low, pi - 1);
-        quickSort(vec, pi + 1, high);
+void quickSort(int* arr, int s, int e){
+    if(s>=e){
+        return;
     }
+
+    int p = partition(arr, s, e);
+
+    quickSort(arr, s, p-1);
+    quickSort(arr, p+1, e);
+
 }
 
 int main() {
-    vector<int> vec = {10, 7, 8, 9, 1, 5};
-    int n = vec.size();
-	
-    quickSort(vec, 0, n - 1);
+    int n;
+    cin>>n;
 
-    for (auto i : vec) {
-        cout << i << " ";
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i]; 
     }
+
+    quickSort(arr, 0, n-1);
+
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+
+    cout<<endl;
     return 0;
 }
